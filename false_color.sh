@@ -4,20 +4,21 @@ echo Initialising.
 
 n=1
 
-numfiles =  ls | wc -l
+filelist=`ls | grep '.jpg'`
 
-while [ $n -le 5 ]; do
+for image_file in $filelist
+do
 
 echo ----------   Processing picture no. $n   ----------
 
-echo $n - Auto Level
-convert $n.jpg -auto-level fc_$n.jpg
+#echo $n - Auto Level
+#convert $n.jpg -auto-level fc_$n.jpg
 
-echo $n - Black Point Compensation
-convert fc_$n.jpg  -black-point-compensation fc_$n.jpg
+#echo $n - Black Point Compensation
+#convert fc_$n.jpg  -black-point-compensation fc_$n.jpg
 
 echo $n - Recolor
-convert fc_$n.jpg  -color-matrix ' 0 0 1
+convert frame_$n.jpg  -color-matrix ' 0 0 1
                                 0 1 0
                                 1 0 0 '   fc_$n.jpg
 
@@ -37,6 +38,6 @@ echo
 
 n=$(( $n + 1 ))
 
-done;
+done
 
 
